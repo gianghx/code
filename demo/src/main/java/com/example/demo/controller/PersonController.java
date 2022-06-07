@@ -33,8 +33,8 @@ public class PersonController {
 		return "redirect:/person/search";
 	}
 
-	@GetMapping("/person/get/{id}")
-	public String get(@PathVariable("id") int id, Model model) {
+	@GetMapping("/person/get/{id}")	//	id/?
+	public String get(@PathVariable("id") int id, Model model) { 
 		list.forEach(p -> {
 			if (p.getId() == id) {
 				model.addAttribute("person", p);

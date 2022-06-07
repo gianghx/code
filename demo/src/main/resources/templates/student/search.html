@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Search Student</title>
+</head>
+<body>
+	<table border=1>
+		<div>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>School</th>
+			</tr>
+		</div>
+		<div th:each="student : ${pList}">
+			<tr>
+				<th><p th:text="${student.id}"></p></th>
+				<th><p th:text="${student.name}"></p></th>
+				<th><p th:text="${student.age}"></p></th>
+				<th><p th:text="${student.school}"></p></th>
+				<th><a th:href="@{/student/add/}">Add</a></th>
+				<th><a th:href="@{'/student/detail?id=' + ${student.id}}">View</a></th>
+				<th><a th:href="@{'/student/delete?id=' + ${student.id}}">Delete</a></th>
+				<th><a th:href="@{'/student/edit?id=' + ${student.id}}">Edit</a></th>
+			</tr>
+		</div>
+	</table>
+</body>
+</html>

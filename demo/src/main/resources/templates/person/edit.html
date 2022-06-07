@@ -6,7 +6,7 @@
 </head>
 <body>
 	<form th:object="${person}" action="/person/edit" method='post'>
-		<input th:field="*{id}" name='id' readonly="readonly">
+		<input th:field="*{id}" name='id' readonly="readonly">  
 		
 		<input th:value="${person.name}" name='name'>
 		<p th:errors="*{name}"/>
