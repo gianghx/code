@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="/template.html">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body layout:fragment="body">
 	<div>
 		<p th:text="${person.id}"></p>
 		<p th:text="${person.name}"></p>
 		<p th:text="${person.age}"></p>
 		<p th:text="${person.country}"></p>
+		<img th:src="${person.fileURL}" width="200" >
 	</div>
 </body>
 </html>

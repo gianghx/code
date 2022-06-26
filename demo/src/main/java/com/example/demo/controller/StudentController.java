@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -75,7 +76,11 @@ public class StudentController {
 	}
 
 	@PostMapping("/student/edit")
-	public String edit(@ModelAttribute("student") @Validated Student student) throws SQLException {
+	public String edit(@ModelAttribute("student") @Validated Student student, BindingResult bindingResult) throws SQLException {
+		if(bindingResult.hasErrors()) {
+			return "student/edit";
+		}
+		
 		StudentDao stDao = new StudentDao();
 		stDao.update(student);
 		

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="/template.html"> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body layout:fragment="body">
 	<form th:object="${person}" action="/person/edit" method='post'>
 		<input th:field="*{id}" name='id' readonly="readonly">  
 		
@@ -12,10 +12,9 @@
 		<p th:errors="*{name}"/>
 		
 		<input th:value="${person.age}" name='age'>
-		
+		<p th:errors="*{age}"/>
 		
 		<input th:value="${person.country}" name='country'>
-		
 		
 		<button type='submit'>SAVE</button>
 	</form>

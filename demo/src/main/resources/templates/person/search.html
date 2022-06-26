@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="/template.html">
 <head>
 <meta charset="UTF-8">
-<title>Search</title>
+<title>Search Person</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-
+<body layout:fragment="body">
+	
+	<form th:action="@{/person/search}" method="post">
+		<div class="mb-3 mt-3">
+			<input name = "id" th:value="${id}" placeholder="tim kiem id ..."/>
+			<input name = "name" th:value="${name}" placeholder="tim kiem ten ..."/>
+			<input name = "age" th:value="${age}" placeholder="tim kiem tuoi ..."/>
+		</div>
+			<select name= "size">
+				<option value="5" th:selected="${size=='5'}">5</option>
+				<option value="10" th:selected="${size=='10'}">10</option>
+				<option value="15" th:selected="${size=='15'}">15</option>
+			</select>
+			
+			<select name= "departmentID">
+				<option value="">---Chon---</option>
+				<option th:each="d : ${departmentList}" th:value="${d.idDpm}" th:text="${d.name}"></option>
+			</select>
+		<input name= "page" th:value="${page}" placeholder="Trang" /> 
+	
+		<button class="btn btn-primary" type = "submit">Search</button>
+	</form>
+	<p> Tong so: <span th:text="${totalPage}"></span></p>
 	<div th:each="person : ${pList}">
 		<p th:text="${person.id}"></p>
 		<p th:text="${person.name}"></p>
 		<p th:text="${person.age}"></p>
 		<p th:text="${person.country}"></p>
+		<img th:src="${person.fileURL}" width="200" >
 		<div>
 			<a th:href="@{/person/add/}">Add</a> 
 			<a th:href="@{'/person/get/' + ${person.id}}">View</a> 

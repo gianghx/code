@@ -9,7 +9,7 @@
 		<input th:field="*{id}" name='id' readonly="readonly">  
 		
 		<input th:value="${student.name}" name='name'>
-		
+		<p th:errors="*{name}"/>
 		
 		<input th:value="${student.age}" name='age'>
 		

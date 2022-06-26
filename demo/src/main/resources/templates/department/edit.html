@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Detail Department</title>
+</head>
+<body>
+	<h1>Update Department</h1>
+	<form th:object="${department}" action="/department/edit" method='post'>
+		<input th:value="${department.idDpm}" name='idDpm' readonly="readonly" > 
+		<input th:value="${department.name}" name='name'> 
+		<input th:value="${department.dpmDate}" name='dDate'> 
+
+		<button type='submit' >SAVE</button>
+	</form>
+</body>
+</html>
