@@ -1,0 +1,32 @@
+<!-- <ul class="list-group" th:fragment="main-menu">
+  <li class="list-group-item list-group-item-primary"><a th:href="@{/category/search}" th:text="#{label.category}"></a></li>
+  <li class="list-group-item list-group-item-secondary"><a th:href="@{/product/search}" th:text="#{label.product}"></a></li>
+  <li class="list-group-item list-group-item-success"><a th:href="@{/user/search}" th:text="#{label.user}"></a></li>
+  <li class="list-group-item list-group-item-warning"><a th:href="@{/bill/search}" th:text="#{label.bill}"></a></li>
+  <li class="list-group-item list-group-item-info"><a th:href="@{/billitems/search}" th:text="#{label.billitems}"></a></li>
+</ul>
+ -->
+<div th:fragment="header-menu">
+	<div id="header">
+		<!-- Begin nav -->
+		<ul id="nav">
+			<li><a th:href="@{/category/search}">Category</a></li>
+			<li><a th:href="@{/product/search}">Product</a></li>
+			<li><a th:href="@{/user/search}">User</a></li>
+			<li><a th:href="@{/bill/search}">Bill</a></li>
+			<li><a th:href="@{/billitems/search}">Bill-Items</a></li>
+		</ul>
+		
+		<!-- Begin user -->
+		<div class="user-btn">
+			<a th:href="@{/logout}"><i class="fa-regular fa-user"></i> Log out</a>
+		</div>
+	</div>
+</div>
+
+<ul class="nav justify-content-center" th:fragment="menu-footer">
+	<li class="nav-item"><a class="nav-link" th:href="@{/home}"
+		th:text="#{label.home}"></a></li>
+	<li class="nav-item"><a class="nav-link" th:href="@{/about-us}"
+		th:text="#{label.about}"></a></li>
+</ul>

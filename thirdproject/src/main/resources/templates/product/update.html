@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html layout:decorate="template.html"> 
+<head>
+<meta charset="UTF-8">
+<title>Update Product</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body layout:fragment="body">
+	<form th:object="${product}" action="/product/update" method='post' enctype='multipart/form-data' >
+		 	ID:
+			<input class="form-control" th:field="*{id}" readonly="readonly">
+			Name:
+			<input class="form-control" th:field="*{name}">
+			<p th:errors="*{name}"/>
+			Price:
+			<input class="form-control" th:field="*{price}">
+			Description:
+			<input class="form-control" th:field="*{description}">
+			Category:
+			<div >
+				<select class="form-select" aria-label="Default select example"  th:name = "category">
+					<option th:each="d : ${categoryList}" th:value="${d.id}" th:text="${d.name}"></option>
+				</select>
+			</div>
+			Image:
+			<input class="form-control" type='file' name='image'>
+			
+		<button class="btn btn-primary" type='submit'>SAVE</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html layout:decorate="template.html">
+<head>
+<meta charset="UTF-8">
+<title>Search Bill</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body layout:fragment="body">
+	<div class="row">
+		<div class="col-md-4" style="margin-left: 40px">
+			<h2>Bill Manager</h2>
+			<form th:action="@{/bill/add}" >
+				<button class='btn btn-primary'>
+					<i class="fa-solid fa-plus"></i> 
+					Create
+				</button>
+			</form>
+		
+			<form th:action="@{/bill/search}" method="post">
+				<div class="mb-3 mt-3">
+					<input name = "id" th:value="${id}" placeholder="Tim kiem ID..."/>
+					<input name = "name" th:value="${name}" placeholder="Tim kiem User..."/>
+				</div>
+				
+				<div class="mb-3 mt-3">
+					From:
+					<input name = "from" type= "date" placeholder="From..."/>
+					To:
+					<input name = "to" type= "date" placeholder="To..."/>
+				</div>
+				
+				Size:
+				<select name= "size">
+					<option value="5" th:selected="${size=='5'}">5</option>
+					<option value="10" th:selected="${size=='10'}">10</option>
+					<option value="15" th:selected="${size=='15'}">15</option>
+				</select>
+				
+				<input name= "page" th:value="${page}" placeholder="Trang" />
+					<!-- Trang:
+					<select name= "page">
+						<option th:each="d : ${totalPage}" th:value="${d}" th:text="${d}"></option>
+					</select> -->
+				<button class="btn btn-primary" type = "submit">Search</button>
+			</form>
+		</div>
+		<div class="col-md-7">
+			<p> Tong so trang: <span th:text="${totalPage}"></span></p>
+	
+			<table class="table table-striped" >
+				<tr>
+					<th>ID</th>
+					<th>BuyDate</th>
+					<th>User Name</th>
+					<th>User ID</th>
+					<th>Options</th>
+				</tr>
+				<tr th:each="bill : ${billList}">
+					<th th:text="${bill.id}"></th>
+					<th th:text="${bill.buyDate}"></th>
+					<th th:text="${bill.user.name}"></th>
+					<th th:text="${bill.user.id}"></th>
+					<th>
+						<a class='btn btn-warning' th:href="@{'/bill/update?id=' + ${bill.id}}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+						<a class='btn btn-danger' th:href="@{'/bill/delete?id=' + ${bill.id}}"><i class="fa-solid fa-trash-can"></i> Delete</a>
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

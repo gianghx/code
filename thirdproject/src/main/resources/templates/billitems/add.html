@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html layout:decorate="template.html">
+<head>
+<meta charset="UTF-8">
+<title>Add BillItems</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body layout:fragment="body">
+	<form action="/billitems/add" method='post'>
+		<div class="mb-3 mt-3">
+			ID:
+			<input class="form-control" placeholder="Id" type= 'text' name='id'>
+			Bill:
+			<select class="form-select" aria-label="Default select example" name="bill">
+				<option th:each="bill : ${billList}" th:value="${bill.id}" th:text="${bill.user.name}"></option>
+			</select>
+			Product:
+			<select class="form-select" aria-label="Default select example" name="product">
+				<option th:each="product : ${productList}" th:value="${product.id}" th:text="${product.name}"></option>
+			</select>
+			Quantity:
+			<input class="form-control" placeholder="quantity" type='text' name='quantity'>
+			Price:
+			<input class="form-control" placeholder="buyPrice" type='text' name='buyPrice'>
+		</div>
+		<button class="btn btn-primary" type='submit'>SAVE</button>
+	</form>
+</body>
+</html>
